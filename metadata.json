@@ -1,0 +1,8 @@
+{
+    "image": "rekcahd/sdsj2018",
+    "entry_points": {
+        "train_classification": "python run.py --mode classification --input {train_csv} --model {model_dir}",
+        "train_regression": "python run.py --mode regression --input {train_csv} --model {model_dir}",
+        "predict": "python run.py --mode predict --input {test_csv} --output {prediction_csv} --model {model_dir}"
+    }
+}
