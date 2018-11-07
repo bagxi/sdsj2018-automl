@@ -26,16 +26,16 @@ If dataset has less than 1000 rows (e.g. first dataset) and `regression` problem
 2. Transform data with [QuantileTransformer][1]
 3. Train [Lasso][2] with regularization term alpha = 0.1
 4. Search for best alpha for Lasso, [Ridge][3] and select best of them:
-  * Cross-validation: `time_series_split.TimeSeriesCV` with `min(6, number_of_rows / 30)` folds if `datetime_0` in dataset else use [KFold][4] with `3` folds
-  * [Grid search][5] alpha for Lasso in range `np.logspace(-2, 0, n_points)` where `n_points` is min of 35 and estimation of how many times we could train the model on all folds
-  * Grid search alpha Ridge if by estimation we could train more than 2 times on all folds, search for alpha in `np.logspace(-2, 2, n_points)` range
+    1. Cross-validation: `time_series_split.TimeSeriesCV` with `min(6, number_of_rows / 30)` folds if `datetime_0` in dataset else use [KFold][4] with `3` folds
+    2. [Grid search][5] alpha for Lasso in range `np.logspace(-2, 0, n_points)` where `n_points` is min of 35 and estimation of how many times we could train the model on all folds
+    3. Grid search alpha Ridge if by estimation we could train more than 2 times on all folds, search for alpha in `np.logspace(-2, 2, n_points)` range
 5. If we successfully grid search than select best of Lasso and Ridge else use Lasso from 2.
 
 #### Gradient Boosting
 
-- [XGBoost][6] with 700 trees (with `early_stopping_rounds=20`)
-- If XGBoosts trains fewer two-thirds of available time than train [LightGBM][7] with 5000 trees (with `early_stopping_rounds=20`)
-- If XGBoost and LightGBM trained successfully than stacking them with [Logistic Regression][8] or Ridge according to the prediction problem
+1. Train few iterations of [XGBoost][6] with 700 trees (`early_stopping_rounds=20`) with continuation until we have enough time for next iteration, or early stopping achieved
+2. If XGBoosts trains fewer two-thirds of available time than train [LightGBM][7] with 5000 trees (`early_stopping_rounds=20`)
+3. If XGBoost and LightGBM trained successfully than stacking them with [Logistic Regression][8] or Ridge according to the prediction problem
 
 [1]: http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.QuantileTransformer.html
 [2]: http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html
