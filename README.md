@@ -1,6 +1,8 @@
 # Sberbank Data Science Journey 2018: AutoML
 
-[SDSJ AutoML](https://sdsj.sberbank.ai/ru/contest) — AutoML competition aimed at machine learning models that automatically process data, completely automatically choosing models, architectures, hyper-parameters, etc.
+[SDSJ AutoML](https://sdsj.sberbank.ai/ru/contest) — AutoML(automatic machine learning) competition aimed at the development of machine learning systems for processing banking datasets: transactions, time-series as well as classic table data from real banking operations.
+
+Processing is handled automatically by the system with models selection, architectures, hyper-parameters, etc.
 
 ## Team members
 
